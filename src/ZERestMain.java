@@ -1,57 +1,32 @@
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import com.ze.rest.DataCollection;
+import com.ze.rest.DataSource;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ZERestMain {
 
     public static void main(String[] args) {
-        System.out.println("MJ");
-
-        try {
-            URI uri = new URIBuilder()
-                    .setScheme("https")
-                    .setHost("newsapi.org")
-                    .setPath("/v1/articles")
-                    .setParameter("source", "cnn")
-                    .setParameter("sortBy", "top")
-                    .setParameter("apiKey", "2a4639109b424bd3970e2fdf00fa54de")
-                    .build();
-
-            HttpGet httpget = new HttpGet(uri);
-
-            CloseableHttpClient httpclient = HttpClients.createDefault();
-            CloseableHttpResponse response = httpclient.execute(httpget);
 
 
-            if (response.getStatusLine().getStatusCode() != 200) {
-                throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
-            }
+        List<NameValuePair> parameters = new ArrayList<>();
+        parameters.add( new BasicNameValuePair("source", "cnn") );
+        parameters.add( new BasicNameValuePair("sortBy", "top") );
+        parameters.add( new BasicNameValuePair("apiKey", "2a4639109b424bd3970e2fdf00fa54de") );
 
-            BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
 
-            String output;
-            System.out.println("Output from Server .... \n");
-            while ((output = br.readLine()) != null) {
-                System.out.println(output);
-            }
 
-            httpclient.close();
+        DataSource ds = new DataSource();
+        ds.setScheme("https");
+        ds.setHost("newsapi.org");
+        ds.setPath("/v1/articles");
+        ds.setParameters(parameters);
 
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        DataCollection dc = new DataCollection(ds);
+        dc.retrieveArticles();
+
 
     }
 

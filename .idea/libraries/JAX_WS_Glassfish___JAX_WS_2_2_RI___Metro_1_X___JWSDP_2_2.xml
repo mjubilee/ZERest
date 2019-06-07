@@ -24,9 +24,11 @@
       <root url="jar://$PROJECT_DIR$/lib/jaxws-tools.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/jaxws-rt.jar!/" />
       <root url="file://$PROJECT_DIR$/lib/httpcomponents-client-4.5.8/lib" />
+      <root url="file://$PROJECT_DIR$/lib/jackson" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
     <jarDirectory url="file://$PROJECT_DIR$/lib/httpcomponents-client-4.5.8/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/jackson" recursive="false" />
   </library>
 </component>
