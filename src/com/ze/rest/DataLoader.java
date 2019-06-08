@@ -111,7 +111,7 @@ public class DataLoader {
 
     public void loadArticleToFile(String fileName, String path, List<Article> data) throws Exception {
 
-        HashMap<String, List<String>> file = retrieveDataFromFile(fileName, path, ",");
+        HashMap<String, List<String>> file = retrieveDataFromFile(fileName, path, "~~");
 
         for (int i = 0; i < data.size(); i++ ) {
             if ( file.containsKey(  data.get(i).getUrl() ) ) {
@@ -120,7 +120,7 @@ public class DataLoader {
         }
 
 
-        loadDataToFile(fileName, path, ",", loadArticleToList(data));
+        loadDataToFile(fileName, path, "~~", loadArticleToList(data));
 
     }
 

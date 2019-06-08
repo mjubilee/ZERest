@@ -1,5 +1,8 @@
 package com.ze.rest;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DataETL {
 
     private DataSource source;
@@ -13,16 +16,17 @@ public class DataETL {
     }
 
     public void processArticle()  {
-        try {
-            DataExtraction dc = new DataExtraction(this.source);
-            DataLoader dl = new DataLoader();
 
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM_dd_yyyy");
+        String fileName = "top_headlines_" + sdf.format(new Date()) + ".scv";
+
+        DataExtraction dc = new DataExtraction(this.source);
+        DataLoader dl = new DataLoader();
+
+        try {
             String jsonString = dc.extractArticles();
 
-            String fileName = "top_headlines_June_05_2019.csv";
             dl.loadArticleToFile(fileName, "", DataTransformation.transformJsonToArticleList(jsonString));
-
-
 
         } catch (Exception e) {
             e.printStackTrace();
