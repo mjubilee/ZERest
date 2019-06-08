@@ -1,0 +1,19 @@
+{
+    "scheme": "https",
+    "host": "newsapi.org",
+    "path": "/v1/articles",
+    "parameters": [
+        {
+        "key": "source",
+        "value": "national-geographic"
+        },
+        {
+            "key": "sortBy",
+            "value": "top"
+        },
+        {
+            "key": "apiKey",
+            "value": "2a4639109b424bd3970e2fdf00fa54de"
+        }
+    ]
+}

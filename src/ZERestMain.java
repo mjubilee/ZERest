@@ -1,32 +1,22 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ze.rest.DataETL;
-import com.ze.rest.DataSource;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
+import com.ze.util.Configuration;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
 
 public class ZERestMain {
 
     public static void main(String[] args) {
 
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            Configuration conf = mapper.readValue(new File("configuration.json"), Configuration.class);
 
-        List<NameValuePair> parameters = new ArrayList<>();
-        parameters.add( new BasicNameValuePair("source", "cnn") );
-        parameters.add( new BasicNameValuePair("sortBy", "top") );
-        parameters.add( new BasicNameValuePair("apiKey", "2a4639109b424bd3970e2fdf00fa54de") );
-
-
-        DataSource ds = new DataSource();
-        ds.setScheme("https");
-        ds.setHost("newsapi.org");
-        ds.setPath("/v1/articles");
-        ds.setParameters(parameters);
-
-
-        DataETL etl = new DataETL(ds);
-        etl.processArticle();
-
+            DataETL etl = new DataETL( conf.createDataSource() );
+            etl.processArticle();
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
 
 
     }

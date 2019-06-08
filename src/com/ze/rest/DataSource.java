@@ -15,6 +15,16 @@ public class DataSource {
         super();
     }
 
+    public DataSource(String scheme,
+            String host,
+            String path,
+            List<NameValuePair> parameters) {
+        this.scheme = scheme;
+        this.host = host;
+        this.path = path;
+        this.parameters = parameters;
+    }
+
     public String getScheme() {
         return scheme;
     }
