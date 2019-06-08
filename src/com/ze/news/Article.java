@@ -7,6 +7,7 @@ public class Article {
     private String url;
     private String urlToImage;
     private String publishedAt;
+    private String title;
     private boolean isExtracted;
 
     public Article() {
@@ -67,5 +68,13 @@ public class Article {
 
     public void setExtracted(boolean extracted) {
         isExtracted = extracted;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

@@ -1,7 +1,5 @@
 package com.ze.rest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ze.news.Article;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
@@ -11,17 +9,15 @@ import org.apache.http.impl.client.HttpClients;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
 
-public class DataCollection {
+public class DataExtraction {
     private DataSource source;
 
-    public DataCollection(){
+    public DataExtraction(){
         super();
     }
 
-    public DataCollection(DataSource s) {
+    public DataExtraction(DataSource s) {
         this.source = s;
     }
 
@@ -33,60 +29,21 @@ public class DataCollection {
         this.source = source;
     }
 
-    public List<Article> retrieveArticles() {
-        try {
-            CloseableHttpClient httpclient = HttpClients.createDefault();
-            CloseableHttpResponse response = establishConnection(httpclient);
+    public String extractArticles() throws Exception {
 
-            if (response.getStatusLine().getStatusCode() != 200) {
-                throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
-            }
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        CloseableHttpResponse response = establishConnection(httpclient);
 
-            BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
-
-            String output;
-            output = br.readLine();
-           // while ((output = br.readLine()) != null) {
-
-           // }
-
-
-
-            ObjectMapper mapper = new ObjectMapper();
-
-//
-                //Article a = mapper.readValue(br.toString(), Article.class);
-
-            List<Article> data = new ArrayList<Article>();
-            for (int i=1; i< 20; i++){
-                Article a = new Article();
-                a.setAuthor(i + " author");
-                a.setDescription(i + " this is description");
-                a.setExtracted(false);
-                a.setPublishedAt(i + " month of 2019");
-                a.setSource(i + " CNN");
-                a.setUrl(i + " http://mahalunggu.jubilee.com");
-                a.setUrlToImage(i + " http://mahalunggu.jubilee.com/image1.jpg");
-                a.setTitle(i + " title");
-
-                data.add(a);
-            }
-
-            String fileName = "top_headlines_June_05_2019.csv";
-            DataLoader de = new DataLoader();
-            de.loadArticleToFile(fileName, "", data);
-
-
-
-
-            httpclient.close();
-
-            System.out.println("mj" + output);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (response.getStatusLine().getStatusCode() != 200) {
+            throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
         }
-        return new ArrayList<Article>();
+
+        BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
+        String output = br.readLine();
+
+        httpclient.close();
+
+        return output;
     }
 
     private CloseableHttpResponse establishConnection(CloseableHttpClient httpclient ) throws Exception {
