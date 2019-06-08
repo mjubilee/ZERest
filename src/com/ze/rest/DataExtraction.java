@@ -45,12 +45,10 @@ public class DataCollection {
             BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
 
             String output;
-            while ((output = br.readLine()) != null) {
-    //            System.out.println("mj" + output);
-            }
+            output = br.readLine();
+           // while ((output = br.readLine()) != null) {
 
-
-
+           // }
 
 
 
@@ -59,25 +57,31 @@ public class DataCollection {
 //
                 //Article a = mapper.readValue(br.toString(), Article.class);
 
+            List<Article> data = new ArrayList<Article>();
+            for (int i=1; i< 20; i++){
+                Article a = new Article();
+                a.setAuthor(i + " author");
+                a.setDescription(i + " this is description");
+                a.setExtracted(false);
+                a.setPublishedAt(i + " month of 2019");
+                a.setSource(i + " CNN");
+                a.setUrl(i + " http://mahalunggu.jubilee.com");
+                a.setUrlToImage(i + " http://mahalunggu.jubilee.com/image1.jpg");
+                a.setTitle(i + " title");
 
+                data.add(a);
+            }
 
-
-
-
-
-
-
-
-
-
-
-
-
+            String fileName = "top_headlines_June_05_2019.csv";
+            DataLoader de = new DataLoader();
+            de.loadArticleToFile(fileName, "", data);
 
 
 
 
             httpclient.close();
+
+            System.out.println("mj" + output);
 
         } catch (Exception e) {
             e.printStackTrace();
