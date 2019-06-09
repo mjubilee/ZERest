@@ -4,6 +4,15 @@ import org.apache.http.NameValuePair;
 
 import java.util.List;
 
+/**
+ * DataSource class is data object class that contain the REST API source, input parameters
+ * to retrieve the REST API.
+ *
+ * @author  Mahalunggu Jubilee
+ * @version 1.0
+ * @since   2018-06-07
+ */
+
 public class DataSource {
     private String scheme;
     private String host;
@@ -12,7 +21,6 @@ public class DataSource {
 
 
     public DataSource(){
-        super();
     }
 
     public DataSource(String scheme,

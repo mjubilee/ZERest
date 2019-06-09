@@ -1,5 +1,16 @@
 package com.ze.news;
 
+/**
+ * Article class is data object class that keep articles information,
+ * such as article source, the author, short description of the article,
+ * URL of the article, article title, published date, and the flag
+ * whether the article is already extracted to the csv file.
+ *
+ * @author  Mahalunggu Jubilee
+ * @version 1.0
+ * @since   2018-06-07
+ */
+
 public class Article {
     private String source;
     private String author;
@@ -10,9 +21,6 @@ public class Article {
     private String title;
     private boolean isExtracted;
 
-    public Article() {
-        super();
-    }
 
     public String getSource() {
         return source;

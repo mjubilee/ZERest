@@ -2,12 +2,16 @@ package com.ze.news;
 
 import java.util.List;
 
+/**
+ * News class is data object class that keep collection of the articles and transmission information,
+ * such as transmission status, article source, and sort by info.
+ *
+ * @author  Mahalunggu Jubilee
+ * @version 1.0
+ * @since   2018-06-07
+ */
+
 public class News {
-
-    public News() {
-        super();
-    }
-
 
     private String status;
     private String source;

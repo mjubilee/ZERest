@@ -1,0 +1,23 @@
+{
+    "status": "ok",
+    "source": "Local Test",
+    "sortBy": "top",
+    "articles": [
+        {
+            "author": "Mahalunggu Jubilee",
+            "title": "Why summer solstice is one of the best times to see Stonehenge",
+            "description": "Experience the mystery of this prehistoric monument during the midsummer sunrise.",
+            "url": "https://www.nationalgeographic.com/test1",
+            "urlToImage": "https://www.nationalgeographic.com/content/dam/travel/photos/000/927/92759.jpg",
+            "publishedAt": null
+        },
+        {
+            "author": "ZE",
+            "title": "Prehistoric tree is first of its kind found below the Equator",
+            "description": "New fossils suggest the chinquapin, found today in parts of Asia, first took root in the Southern Hemisphere.",
+            "url": "https://www.nationalgeographic.com/test2",
+            "urlToImage": "https://www.nationalgeographic.com/content/dam/science/2019/06/06/tree/hecyx2.jpg",
+            "publishedAt": null
+        }
+    ]
+}

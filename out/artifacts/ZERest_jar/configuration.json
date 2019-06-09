@@ -2,10 +2,14 @@
     "scheme": "https",
     "host": "newsapi.org",
     "path": "/v1/articles",
+    "delimiter": "~",
+    "outputFileName": "top_headline_", 
+    "testMode": "false",
+    "testFile": "newsTest.json",
     "parameters": [
         {
         "key": "source",
-        "value": "national-geographic"
+        "value": "cnn"
         },
         {
             "key": "sortBy",

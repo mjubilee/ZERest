@@ -1,5 +1,14 @@
 package com.ze.util;
 
+/**
+ * Parameter class is data object class that keep key and value pair.
+ * This class is used to keep the input parameter from configuration file
+ *
+ * @author  Mahalunggu Jubilee
+ * @version 1.0
+ * @since   2018-06-07
+ */
+
 public class Parameter {
     private String key;
     private String value;
