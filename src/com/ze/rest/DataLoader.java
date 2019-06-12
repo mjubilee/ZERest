@@ -39,7 +39,6 @@ public class DataLoader {
         try {
             FileWriter file = new FileWriter(fileName, true);
 
-
             for (List<String> rowData : data) {
                 file.append(String.join(delimiter, rowData));
                 file.append("\n");

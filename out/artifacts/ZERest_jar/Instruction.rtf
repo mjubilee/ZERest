@@ -12,28 +12,33 @@ Terminal Command line : java -jar ZERest.jar\
 Configuration file name: configuration.json\
 \
 Description: \
-ZERest is a standalone application that can be run through terminal command line. This application will generate a CSV file on daily basis that contain news information from HTTPS://newsapi.org\
-This application contains a configuration file that can be used to configure the REST API resources to retrieve some news. The configuration file is using JSON format that contains:
+ZeRest application is a standalone application that has a purposed to consume REST API from https://newsapi.org and process the news article in to a CSV file. The CSV file will be generated daily and the new article will be appended in to CSV file accordingly when the application runs multiple times in a day. \
+\
+The application has a configuration file that must be located in the same folder as the Jar file in order for the application to read user configuration. When the test data is exercised, the test data must be in the JSON format and located in the same folder as the Jar file.\
+\
+The configuration contains some information that is used to retrieve REST API, CSV file information, and data test information. The configuration file is using JSON format that contains:
 \f1 \cf2 \cb3 \expnd0\expndtw0\kerning0
 \outl0\strokewidth0 \strokec4  \
 1. \strokec5 scheme\
-	This key has internet protocol value, such as \strokec6 https\
+	This key has internet protocol value that needs to be configure to access the data. The default value is \strokec6 https.\
 2. \strokec5 host\
-	This key has URL address value, such as \strokec6 newsapi.org\
+	This key has URL address value of the REST API resided. The default value of this key is \strokec6 newsapi.org\
 3. \strokec5 path\
-	This key has URL address path value, such as \strokec6 /v1/articles\
+	This key has URL address path value of the main URL address. The default value for this key is \strokec6 /v1/articles\
 4. \strokec5 delimiter\
-	This key has a string value that is used to separate the data in CSV file, such as \strokec6 ~\strokec4 \
+	This key has a string value that is used to separate the data in CSV file, for example \strokec6 ~\strokec4 \
 5. \strokec5 outputFileName\
-	This key has a string value that is used to name the CSV file followed by date stamp, for example \strokec6 top_headline_\strokec4 \
+	This key has a string value that is used to name the CSV file followed by date stamp. The date stamp will be generated \
+	by the application. The file format is going to be <outputFileName>MMM_DD_YYYY.csv\strokec4 \
 6. \strokec5 testMode\
-	This key has a boolean value to drive the data source. When the value is true, the application will retrieve the \
-	input data from a specific file in local computer. If the value is false, the application will retrieve from the\
-	REST API specified in this configuration file.\
+	This key has a boolean value to determine which data source the application going to consume. \
+	When the value is true, the application will retrieve the input data from a test file in local computer in the same directory as \
+	the application. If the value is false, the application will retrieve the data from the REST API specified in this configuration file.\
 7. testFile\
 	This key has a string value that contain file name of test data source, for example \strokec6 newsTest.json\
 8. \strokec5 parameters\
-	This key is collection of key - value string that are used to retrieve information from REST API source, for example\strokec4 \
+	This key is collection of key - value string that are used to retrieve information from REST API source. The \'93key\'94 value is going \
+	to be the parameter name and \'93value\'94 value will be parameter value. For example\strokec4 \
 \pard\pardeftab720\sl360\partightenfactor0
 \cf2         \strokec5 "key"\strokec4 : \strokec6 "source"\strokec4 ,\
         \strokec5 "value"\strokec4 : \strokec6 "cnn"\strokec4 \
