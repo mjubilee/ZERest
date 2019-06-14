@@ -55,7 +55,8 @@ public class DataEtl {
         String jsonString = "";
 
         if (configuration.getTestMode().equals("false")) {
-            jsonString = dataExtraction.extractArticles();
+//            jsonString = dataExtraction.extractArticles();
+            jsonString = dataExtraction.extractDataUsingJersey();
         } else {
             jsonString = retrieveTestData();
         }

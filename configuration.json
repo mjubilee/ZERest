@@ -9,7 +9,7 @@
     "parameters": [
         {
         "key": "source",
-        "value": "cnnb"
+        "value": "cnn"
         },
         {
             "key": "sortBy",

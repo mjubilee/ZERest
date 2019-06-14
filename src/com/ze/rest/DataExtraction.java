@@ -1,5 +1,8 @@
 package com.ze.rest;
 
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -95,5 +98,35 @@ public class DataExtraction {
 
         return response;
 
+    }
+
+    public String extractDataUsingJersey() {
+
+        String output = null;
+
+        try {
+            Client client = Client.create();
+            URI uri = new URIBuilder()
+                    .setScheme(source.getScheme())
+                    .setHost(source.getHost())
+                    .setPath(source.getPath())
+                    .setParameters(source.getParameters())
+                    .build();
+
+            WebResource webResource = client.resource(uri);
+            ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
+
+            if (response.getStatus() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+            }
+
+            output = response.getEntity(String.class);
+            response.close();
+
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        return output;
     }
 }
